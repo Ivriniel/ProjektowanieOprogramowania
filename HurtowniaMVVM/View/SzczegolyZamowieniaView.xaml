@@ -1,0 +1,101 @@
+﻿<Controls:MetroWindow x:Class="HurtowniaMVVM.View.SzczegolyZamowieniaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HurtowniaMVVM.View"
+        xmlns:viewmodel="clr-namespace:HurtowniaMVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Dział zaopatrzenia > Szczegóły Zamówienia" Height="720" Width="1280"
+        WindowStyle="ToolWindow" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.DataContext>
+        <viewmodel:SzczegolyZamowieniaViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF9DBAE5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button
+                Content="Złóż zamówienie"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                Margin="0,200,0,0"
+                VerticalAlignment="Top"
+                Width="200"
+                Height="60"
+                IsEnabled="{Binding Path=WybranoDostawce}"
+                Command="{Binding ZlozZamowienieCommand, Mode=OneWay}"/>
+            <Button
+                Content="Wyjdź"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,290,0,0"
+                Width="120"
+                Height="40"
+                FontSize="18"
+                Command="{Binding AnulujZamowienieCommand, Mode=OneWay}"/>
+            <Button
+                Content="Wybierz towar"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="200"
+                Height="60"
+                FontSize="18"
+                Command="{Binding WybierzTowarCommand, Mode=OneWay}"/>
+            <Label
+                Content="Wybrano:"
+                HorizontalAlignment="Left"
+                Margin="0,70,0,0"
+                HorizontalContentAlignment="Center"
+                FontWeight="Bold"
+                FontSize="18"
+                Width="200"
+                Visibility="{Binding Path=WybranoTowar, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Label
+                Content="{Binding TowarMessage}"
+                HorizontalAlignment="Left"
+                Margin="0,100,0,0"
+                HorizontalContentAlignment="Center"
+                FontSize="16"
+                MinWidth="200"
+                Visibility="{Binding Path=WybranoTowar, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Button
+                Content="Wybierz dostawcę"
+                HorizontalAlignment="Left"
+                Margin="280,0,0,0"
+                VerticalAlignment="Top"
+                Width="200"
+                Height="60"
+                FontSize="18"
+                IsEnabled="{Binding Path=WybierzDostawceEnabled}"
+                Command="{Binding WybierzDostawceCommand, Mode=OneWay}"/>
+            <Label
+                Content="Wybrano:"
+                Margin="280,70,0,0"
+                HorizontalContentAlignment="Center"
+                FontWeight="Bold"
+                FontSize="18"
+                Width="200"
+                Visibility="{Binding Path=WybranoDostawce, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <Label
+                Content="{Binding NazwaDostawcy}"
+                Margin="280,100,0,0"
+                HorizontalContentAlignment="Center"
+                FontSize="16"
+                MinWidth="200"
+                Visibility="{Binding Path=WybranoDostawce, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+    </Grid>
+</Controls:MetroWindow>

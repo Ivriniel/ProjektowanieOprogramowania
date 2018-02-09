@@ -1,0 +1,81 @@
+﻿<Controls:MetroWindow x:Class="HurtowniaMVVM.MenuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:viewmodel="clr-namespace:HurtowniaMVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Dział zaopatrzenia" Height="720" Width="1280"
+        WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Background="{x:Null}">
+    <Window.DataContext>
+        <viewmodel:MenuViewModel/>
+    </Window.DataContext>
+    <Grid RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.013"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF9DBAE5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Image
+                        Height="225"
+                        Width="200"
+                        Source="C:\Users\User\source\repos\HurtowniaMVVM/PhotoId.jpg" />
+                    <Label
+                        Content="Stefan Stefanowski"
+                        HorizontalAlignment="Center"
+                        Margin="0,10,0,0"
+                        FontSize="18"
+                        FontWeight="Bold"/>
+                    <Label
+                        Content="Starszy pracownik dz. zaop."
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Margin="140,0,0,0" >
+                    <Button
+                        Content="Dodaj towar"
+                        Margin="0,0,0,0"
+                        Width="270"
+                        Height="40"
+                        FontSize="16"/>
+                    <Button
+                        Content="Dodaj dostawcę"
+                        Margin="0,40,0,0"
+                        Width="270"
+                        Height="40"
+                        FontSize="16"
+                        Command="{Binding DodajDostCommand, Mode=OneWay}" />
+                    <Button
+                        Content="Złóż zamówienie"
+                        Margin="0,40,0,0"
+                        Width="270"
+                        Height="40"
+                        FontSize="16"
+                        Command="{Binding ZlozZamowienieCommand, Mode=OneWay}"/>
+                    <Button
+                        Content="Sprawdź zapotrzebowania"
+                        Margin="0,40,0,0"
+                        Width="270"
+                        Height="40"
+                        FontSize="16"/>
+                </StackPanel>                
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Controls:MetroWindow>

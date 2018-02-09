@@ -1,0 +1,61 @@
+﻿<Controls:MetroWindow x:Class="HurtowniaMVVM.View.ListaDostawcowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HurtowniaMVVM.View"
+        mc:Ignorable="d"
+        Title="Dział zaopatrzenia > Lista dostawców" Height="720" Width="1280"
+        WindowStyle="ToolWindow" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF9DBAE5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Margin="20,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button
+                Content="Anuluj"
+                Width="90"
+                Margin="0,10"
+                Height="43"
+                FontSize="18"
+                Command="{Binding AnulujWyborCommand, Mode=OneWay}"/>
+        </Grid>
+        <Label
+            Content="{Binding LabelMessage}"
+            Margin="20,90,0,0"
+            FontWeight="Bold"
+            FontSize="22"/>
+        <DataGrid
+            ItemsSource="{Binding ListaDostawcowTowaru}"
+            SelectedItem="{Binding WybranyDostawca}"
+            AutoGenerateColumns="False"
+            HorizontalAlignment="Left"
+            Margin="20,140,0,0"
+            FontSize="18"
+            VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa dostawcy" Binding="{Binding Nazwa}" Width="220"/>
+                <DataGridTextColumn Header="Cena jednostkowa" Binding="{Binding CenaJednostkowaTowaru}" Width="220"/>
+                <DataGridTextColumn Header="Średnie Opóźnienie" Binding="{Binding OcenyDostawcy.SrednieOpoznienieDostawcy}" Width="220"/>
+                <DataGridTextColumn Header="Średni Czas Dostawy" Binding="{Binding OcenyDostawcy.SredniCzasTrwaniaDostawy}" Width="220"/>
+                <DataGridTextColumn Header="Średnia Jakość" Binding="{Binding OcenyDostawcy.SredniaJakosc}" Width="220"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Content="Wybierz"
+                                FontSize="18"
+                                Command="{Binding Path=DataContext.WybierzDostawceCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Controls:MetroWindow>
